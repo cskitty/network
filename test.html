@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 800px;
+            height: 800px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": "Jaime Lannister", "label": "Jaime Lannister", "shape": "dot"}, {"id": "Robb Stark", "label": "Robb Stark", "shape": "dot"}, {"id": "Tyrion Lannister", "label": "Tyrion Lannister", "shape": "dot"}, {"id": "Ros", "label": "Ros", "shape": "dot"}, {"id": "Cersei Lannister", "label": "Cersei Lannister", "shape": "dot"}, {"id": "Robert Baratheon", "label": "Robert Baratheon", "shape": "dot"}, {"id": "Catelyn Stark", "label": "Catelyn Stark", "shape": "dot"}, {"id": "Theon Greyjoy", "label": "Theon Greyjoy", "shape": "dot"}, {"id": "Viserys Targaryen", "label": "Viserys Targaryen", "shape": "dot"}, {"id": "Luwin", "label": "Luwin", "shape": "dot"}, {"id": "Arya Stark", "label": "Arya Stark", "shape": "dot"}, {"id": "Jon Snow", "label": "Jon Snow", "shape": "dot"}, {"id": "Illyrio Mopatis", "label": "Illyrio Mopatis", "shape": "dot"}, {"id": "Sansa Stark", "label": "Sansa Stark", "shape": "dot"}, {"id": "Daenerys Targaryen", "label": "Daenerys Targaryen", "shape": "dot"}, {"id": "Eddard Stark", "label": "Eddard Stark", "shape": "dot"}, {"id": "Brandon Stark", "label": "Brandon Stark", "shape": "dot"}]);
+        edges = new vis.DataSet([{"from": "Jon Snow", "title": "2.8", "to": "Theon Greyjoy", "value": 2.8}, {"from": "Tyrion Lannister", "title": "27.08", "to": "Jaime Lannister", "value": 27.08}, {"from": "Tyrion Lannister", "title": "29.08", "to": "Ros", "value": 29.08}, {"from": "Cersei Lannister", "title": "3.56", "to": "Arya Stark", "value": 3.56}, {"from": "Cersei Lannister", "title": "5.84", "to": "Robert Baratheon", "value": 5.84}, {"from": "Jaime Lannister", "title": "0.96", "to": "Ros", "value": 0.96}, {"from": "Robb Stark", "title": "11.84", "to": "Theon Greyjoy", "value": 11.84}, {"from": "Arya Stark", "title": "4.44", "to": "Eddard Stark", "value": 4.44}, {"from": "Arya Stark", "title": "7.92", "to": "Robert Baratheon", "value": 7.92}, {"from": "Arya Stark", "title": "2.6", "to": "Sansa Stark", "value": 2.6}, {"from": "Eddard Stark", "title": "1.2", "to": "Catelyn Stark", "value": 1.2}, {"from": "Eddard Stark", "title": "74.24", "to": "Robert Baratheon", "value": 74.24}, {"from": "Robert Baratheon", "title": "4.96", "to": "Catelyn Stark", "value": 4.96}, {"from": "Robert Baratheon", "title": "5.16", "to": "Sansa Stark", "value": 5.16}, {"from": "Daenerys Targaryen", "title": "61.92", "to": "Viserys Targaryen", "value": 61.92}, {"from": "Brandon Stark", "title": "10.96", "to": "Catelyn Stark", "value": 10.96}, {"from": "Catelyn Stark", "title": "15.4", "to": "Luwin", "value": 15.4}, {"from": "Illyrio Mopatis", "title": "71.0", "to": "Viserys Targaryen", "value": 71.0}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
